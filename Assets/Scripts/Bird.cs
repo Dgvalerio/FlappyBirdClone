@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Bird : MonoBehaviour
 {
     public float speed = 1f;
     private Rigidbody2D _collision;
+    public GameObject gameOver;
     
     private void Start()
     {
@@ -18,5 +20,11 @@ public class Bird : MonoBehaviour
         {
             _collision.velocity = Vector2.up * speed;
         }
+    }
+
+    private void OnCollisionEnter2D()
+    {
+        gameOver.SetActive(true);
+        Time.timeScale = 0;
     }
 }
